@@ -596,9 +596,9 @@ elif [[ ${port_rom_code} != "sheng" ]] || [[ ${port_rom_code} != "shennong" ]];t
 fi
 
 # 主题防恢复
-if [ -f build/portrom/images/system/system/etc/init/hw/init.rc ];then
-	sed -i '/on boot/a\'$'\n''    chmod 0731 \/data\/system\/theme' build/portrom/images/system/system/etc/init/hw/init.rc
-fi
+#if [ -f build/portrom/images/system/system/etc/init/hw/init.rc ];then
+	#sed -i '/on boot/a\'$'\n''    chmod 0731 \/data\/system\/theme' build/portrom/images/system/system/etc/init/hw/init.rc
+#fi
 
 
 if [[ ${is_eu_rom} == true ]];then
@@ -856,30 +856,6 @@ if [[ ${port_rom_code} == "sheng" ]];then
 fi
 
 #自定义替换
-
-#Add perfect icons
-blue "Integrating perfect icons"  
-git clone --depth=1 https://github.com/pzcn/Perfect-Icons-Completion-Project.git icons &>/dev/null
-for pkg in "$work_dir"/build/portrom/images/product/media/theme/miui_mod_icons/dynamic/*; do
-  if [[ -d "$work_dir"/icons/icons/$pkg ]]; then
-    rm -rf "$work_dir"/icons/icons/$pkg
-  fi
-done
-rm -rf "$work_dir"/icons/icons/com.xiaomi.scanner
-mv "$work_dir"/build/portrom/images/product/media/theme/default/icons "$work_dir"/build/portrom/images/product/media/theme/default/icons.zip
-rm -rf "$work_dir"/build/portrom/images/product/media/theme/default/dynamicicons
-mkdir -p "$work_dir"/icons/res
-mv "$work_dir"/icons/icons "$work_dir"/icons/res/drawable-xxhdpi
-cd "$work_dir"/icons
-zip -qr "$work_dir"/build/portrom/images/product/media/theme/default/icons.zip res
-cd "$work_dir"/icons/themes/Hyper/
-zip -qr "$work_dir"/build/portrom/images/product/media/theme/default/dynamicicons.zip layer_animating_icons
-cd "$work_dir"/icons/themes/common/
-zip -qr "$work_dir"/build/portrom/images/product/media/theme/default/dynamicicons.zip layer_animating_icons
-mv "$work_dir"/build/portrom/images/product/media/theme/default/icons.zip "$work_dir"/build/portrom/images/product/media/theme/default/icons
-mv "$work_dir"/build/portrom/images/product/media/theme/default/dynamicicons.zip "$work_dir"/build/portrom/images/product/media/theme/default/dynamicicons
-rm -rf "$work_dir"/icons
-cd "$work_dir"
 
 # Optimize prop from K40s 
 if ! is_property_exists ro.miui.surfaceflinger_affinity build/portrom/images/product/etc/build.prop; then
