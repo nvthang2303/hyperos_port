@@ -128,8 +128,9 @@ else
 esac
 
 green "ROM初步检测通过" "ROM validation passed."
+#miui_HOUJI_OS1.1.3.0.VNCCNXM_31653a8aee_15.0.zip
 
-if [[ "$portrom" =~ SHENNONG|HOUJI ]]; then
+if [[ "$portrom" =~ SHENNONG|HOUJI ]] || [[ "$portrom" =~ shennong|houji ]] ; then
     is_shennong_houji_port=true
 else
     is_shennong_houji_port=false
